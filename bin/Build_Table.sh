@@ -66,5 +66,5 @@ if [ ! -f $GTF ]; then
    $(gunzip $f);
    echo "file $f is unzipped as and should be ${GTF}"
 fi
-(grep -v "^#" Homo_sapiens.GRCh37.75.gtf | awk '{ print $2,$3,$1,$4,$5}' | gsed 's/ /,/g' | gsed -e '1itranscript_type,feature,chr,start,end'> gene_dist_head.csv)
+(grep -v "^#" Homo_sapiens.GRCh37.75.gtf | awk '{ print $2,$3,$1,$4,$5}' | sed 's/ /\t/g' | sed -e '1itranscript_type\tfeature\tchr\tstart\tend'> gene_dist_head.tsv)
 exit 0;
